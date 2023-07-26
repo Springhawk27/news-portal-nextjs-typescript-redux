@@ -2,9 +2,13 @@ import Head from "next/head";
 import RootLayout from "@/components/Layouts/RootLayout";
 import Banner from "@/components/UI/Banner";
 import AllNews from "@/components/UI/AllNews";
+import { useGetNewsesQuery } from "@/redux/api/api";
 
 const HomePage = ({ allNews }) => {
   // console.log(allNews);
+
+  const { data, isLoading, isError, error } = useGetNewsesQuery(); //-> redux store data
+  console.log(data);
   return (
     <>
       <Head>
@@ -17,7 +21,8 @@ const HomePage = ({ allNews }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Banner />
-      <AllNews allNews={allNews}></AllNews>
+      {/* <AllNews allNews={allNews}></AllNews> */}
+      <AllNews allNews={data}></AllNews>
     </>
   );
 };

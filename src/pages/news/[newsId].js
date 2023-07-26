@@ -7,66 +7,76 @@ import {
 } from "@ant-design/icons";
 import Image from "next/image";
 import RootLayout from "@/components/Layouts/RootLayout";
+import { useGetNewsQuery } from "@/redux/api/api";
+import { useRouter } from "next/router";
 
-const NewsDetailPage = ({ news }) => (
-  <Row style={{ marginTop: "80px", alignItems: "center" }}>
-    <Col md={6} lg={12}>
-      <Image
-        alt="example"
-        src={news?.image_url}
-        width={500}
-        height={300}
-        responsive
-      />
-    </Col>
-    <Col md={6} lg={12} style={{ paddingLeft: "20px" }}>
-      <h1 style={{ fontSize: "30px" }}>{news?.title}</h1>
-      <span
-        style={{
-          color: "gray",
-          display: "block",
-          fontSize: "20px",
-        }}
-      >
-        <UserOutlined /> {news?.author}
-      </span>
-      <div
-        className="line"
-        style={{
-          height: "5px",
-          margin: "20px 0",
-          background: "#000",
-          width: "100%",
-        }}
-      ></div>
+const NewsDetailPage = ({ news }) => {
+  // news2 data by using redux
+  const router = useRouter();
+  const { newsId } = router.query;
+  const { data: news2, isLoading, error } = useGetNewsQuery(newsId);
+  //   console.log(news2);
 
-      <p
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "100%",
-          color: "gray",
-          margin: "10px 0px",
-          fontSize: "20px",
-        }}
-      >
-        <span>
-          <CalendarOutlined /> {news?.release_date}
+  return (
+    <Row style={{ marginTop: "80px", alignItems: "center" }}>
+      <Col md={6} lg={12}>
+        <Image
+          alt="example"
+          src={news2?.image_url}
+          width={500}
+          height={300}
+          responsive
+        />
+      </Col>
+      <Col md={6} lg={12} style={{ paddingLeft: "20px" }}>
+        <h1 style={{ fontSize: "30px" }}>{news2?.title}</h1>
+        <span
+          style={{
+            color: "gray",
+            display: "block",
+            fontSize: "20px",
+          }}
+        >
+          <UserOutlined /> {news2?.author}
         </span>
-        <span>
-          <CommentOutlined /> {news?.comment_count} Comments
-        </span>
-        <span>
-          <ProfileOutlined /> {news?.category}
-        </span>
-      </p>
+        <div
+          className="line"
+          style={{
+            height: "5px",
+            margin: "20px 0",
+            background: "#000",
+            width: "100%",
+          }}
+        ></div>
 
-      <p style={{ fontSize: "25px", fontWeight: "lighter" }}>
-        {news?.description}
-      </p>
-    </Col>
-  </Row>
-);
+        <p
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+            color: "gray",
+            margin: "10px 0px",
+            fontSize: "20px",
+          }}
+        >
+          <span>
+            <CalendarOutlined /> {news2?.release_date}
+          </span>
+          <span>
+            <CommentOutlined /> {news2?.comment_count} Comments
+          </span>
+          <span>
+            <ProfileOutlined /> {news?.category}
+          </span>
+        </p>
+
+        <p style={{ fontSize: "25px", fontWeight: "lighter" }}>
+          {news2?.description}
+        </p>
+      </Col>
+    </Row>
+  );
+};
 export default NewsDetailPage;
 
 NewsDetailPage.getLayout = function getLayout(page) {

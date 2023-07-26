@@ -7,9 +7,11 @@ import {
   ProfileOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
+import { useGetNewsQuery } from "@/redux/api/api";
 
 const AllNews = ({ allNews }) => {
   const { Meta } = Card;
+
   return (
     <>
       <h1
@@ -80,6 +82,7 @@ const AllNews = ({ allNews }) => {
                   ? news?.description.slice(0, 70) + "..."
                   : news?.description}
               </p>
+              {/* <p>{news?.id}</p> */}
               <Link href={`/news/${news?.id}`}>
                 <Button
                   style={{
