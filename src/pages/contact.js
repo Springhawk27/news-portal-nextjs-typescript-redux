@@ -12,7 +12,7 @@ const ContactPage = () => {
       }}
     >
       <Head>
-        <title>PH_NP-Contact Us</title>
+        <title>NP-Contact Us</title>
         <meta
           name="description"
           content="This is news portal of programming hero made by next-js"

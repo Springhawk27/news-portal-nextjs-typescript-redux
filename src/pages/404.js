@@ -3,19 +3,18 @@ import Image from "next/image";
 import { Button } from "antd";
 import Head from "next/head";
 import Link from "next/link";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 const NotFoundPage = () => {
+  const router = useRouter();
 
-    const router = useRouter();
-
-    setTimeout(()=>{
-        router.push("/")
-    },3000)
+  setTimeout(() => {
+    router.push("/");
+  }, 3000);
 
   return (
     <div style={{ textAlign: "center" }}>
       <Head>
-        <title>PH-News-404 Not Found</title>
+        <title>News-404 Not Found</title>
         <meta
           name="description"
           content="This is news portal of programming hero made by next-js"

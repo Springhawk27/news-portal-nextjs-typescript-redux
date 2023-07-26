@@ -3,7 +3,6 @@ import Head from "next/head";
 import Link from "next/link";
 import RootLayout from "@/components/Layouts/RootLayout";
 
-
 const AboutPage = () => {
   return (
     <div
@@ -13,7 +12,7 @@ const AboutPage = () => {
       }}
     >
       <Head>
-        <title>PH_NP-About Us</title>
+        <title>NP-About Us</title>
         <meta
           name="description"
           content="This is news portal of programming hero made by next-js"
@@ -30,7 +29,6 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
-
 
 AboutPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
