@@ -73,7 +73,7 @@ HomePage.getLayout = function getLayout(page) {
 // };
 
 // next.js server -- front end -- client --- next.js internal server
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const res = await fetch("http://localhost:3000/api/news");
   const data = await res.json();
   // console.log(data);
