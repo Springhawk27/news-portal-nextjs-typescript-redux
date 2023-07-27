@@ -29,8 +29,14 @@ const HomePage = ({ allNews }) => {
       {/* <Banner /> */}
       <DynamicBanner></DynamicBanner>
 
+      {/* this is from backend server -- json server(package.json)*/}
       {/* <AllNews allNews={allNews}></AllNews> */}
-      <AllNews allNews={data}></AllNews>
+
+      {/* this is from redux api -- by using redux -- client side rendering */}
+      {/* <AllNews allNews={data}></AllNews> */}
+
+      {/* this is next.jsserver -- pages/api/news.js */}
+      <AllNews allNews={allNews}></AllNews>
     </>
   );
 };
@@ -53,14 +59,28 @@ HomePage.getLayout = function getLayout(page) {
 //   };
 // };
 
+// json server --- next.js backend -- server side rendering
+
+// export const getServerSideProps = async () => {
+//   const res = await fetch("http://localhost:5000/news");
+//   const data = await res.json();
+//   // console.log(data);
+//   return {
+//     props: {
+//       allNews: data,
+//     },
+//   };
+// };
+
+// next.js server -- front end -- client --- next.js internal server
 export const getServerSideProps = async () => {
-  const res = await fetch("http://localhost:5000/news");
+  const res = await fetch("http://localhost:3000/api/news");
   const data = await res.json();
   // console.log(data);
 
   return {
     props: {
-      allNews: data,
+      allNews: data.data,
     },
   };
 };
